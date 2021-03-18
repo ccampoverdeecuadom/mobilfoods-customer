@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:customer/src/elements/CategoryMarketsGrid.dart';
 import 'package:customer/src/elements/PreLaunchWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -158,10 +159,12 @@ class _HomeWidgetState extends StateMVC<HomeWidget> {
                 case 'category_of_markets':
                   return this._con.fields.isEmpty
                       ? CircularLoadingWidget(height: 150)
-                      : CategoryMarketsWidget(
-                          fields: _con.fields,
-                          saveFilter: (int i) => {saveFilter(i)},
-                        );
+                      : Column(children: [
+                          CategoryMarketsGrid(
+                            fields: _con.fields,
+                            saveFilter: (int i) => {saveFilter(i)},
+                          )
+                        ]);
                 case 'slider':
                   return HomeSliderWidget(slides: _con.slides);
                 case 'search':

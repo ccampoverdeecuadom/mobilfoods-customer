@@ -67,6 +67,39 @@ class _MarketsWidgetState extends StateMVC<MarketsWidget> {
                   dense: true,
                   contentPadding: EdgeInsets.symmetric(vertical: 0),
                   leading: Icon(
+                    Icons.bookmark,
+                    color: Theme.of(context).hintColor,
+                  ),
+                  title: Text(
+                    'Promociones',
+                    style: Theme.of(context).textTheme.headline4,
+                  ),
+                  subtitle: Text("Últimas Promociones",
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                ),
+              ),
+              Container(height: 100,
+              child: ListView.builder(
+                itemCount:6,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) {
+                  double _marginLeft = 0;
+                  (index == 0) ? _marginLeft = 20 : _marginLeft = 0;
+                  return GestureDetector(onTap: () => {},
+                    child: Container(
+                      padding: EdgeInsets.all(10),
+                       child:Image.network(
+                        "https://media-cdn.tripadvisor.com/media/photo-s/10/f6/4c/16/thursday-2x1-micheladas.jpg", height: 100,),)
+                  );
+                }),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 15, left: 20, right: 20),
+                child: ListTile(
+                  dense: true,
+                  contentPadding: EdgeInsets.symmetric(vertical: 0),
+                  leading: Icon(
                     Icons.stars,
                     color: Theme.of(context).hintColor,
                   ),

@@ -28,7 +28,7 @@ class _CardsCarouselWidgetState extends State<CardsCarouselWidget> {
     return widget.marketsList.isEmpty
         ? CardsCarouselLoaderWidget()
         : Container(
-             height: widget.isVertical ? MediaQuery.of(context).size.height * 0.7 : 288,
+             height: widget.isVertical ? MediaQuery.of(context).size.height * 0.55 : 288,
             child: ListView.builder(
               scrollDirection: widget.isVertical ? Axis.vertical : Axis.horizontal,
               itemCount: widget.marketsList.length,

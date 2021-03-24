@@ -1,4 +1,4 @@
 {
-  "base_url": "http://192.168.100.51/",
-  "api_base_url": "http://192.168.100.51/api/"
+  "base_url": "http://app.winixapp.com/",
+  "api_base_url": "http://app.winixapp.com/api/"
 }

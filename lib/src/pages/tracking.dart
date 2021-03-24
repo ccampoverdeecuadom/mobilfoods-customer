@@ -586,6 +586,50 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
                                   ],
                                 ),
                               ),
+                              Container(
+                                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 7),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: <Widget>[
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment: CrossAxisAlignment.start,
+                                        children: <Widget>[
+                                          Text(
+                                            'Comunicate con el repartidor',
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context).textTheme.caption,
+                                          ),
+                                          Text(
+                                            _con.order.driver.name,
+                                            overflow: TextOverflow.ellipsis,
+                                            style: Theme.of(context).textTheme.bodyText1,
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    SizedBox(width: 10),
+                                    SizedBox(
+                                      width: 42,
+                                      height: 42,
+                                      child: FlatButton(
+                                        padding: EdgeInsets.all(0),
+                                        onPressed: () {
+                                          Navigator.of(context).pushNamed('/Chating', arguments: RouteArgument());
+                                        },
+                                        child: Icon(
+                                          Icons.chat,
+                                          color: Theme.of(context).primaryColor,
+                                          size: 24,
+                                        ),
+                                        color: Theme.of(context).accentColor.withOpacity(0.9),
+                                        shape: StadiumBorder(),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SizedBox(height: 20),
                             ],)
                           ],
 
@@ -597,7 +641,7 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
                       child: Column(
                         children: <Widget>[
                           Padding(
-                              padding: const EdgeInsets.all(12),
+                              padding: const EdgeInsets.all(15),
                               child: _con.order.driver == null || _con.order.driver.deviceToken == null ?
                               Text("Aun no se ha asignado un Conductor") :
                                   _con.order.orderStatus.id == '5' ? SizedBox(height: 0,) :

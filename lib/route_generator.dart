@@ -1,4 +1,5 @@
 
+import 'package:customer/src/pages/testchat.dart';
 import 'package:customer/src/pages/tracking_roudsman.dart';
 import 'package:flutter/material.dart';
 import 'src/pages/markets.dart';
@@ -64,6 +65,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => CartWidget(routeArgument: args as RouteArgument));
       case '/Tracking':
         return MaterialPageRoute(builder: (_) => TrackingWidget(routeArgument: args as RouteArgument));
+      case '/Chating':
+        return MaterialPageRoute(builder: (_) => ChatWidget(routeArgument: args as RouteArgument));
       case '/Reviews':
         return MaterialPageRoute(builder: (_) => ReviewsWidget(routeArgument: args as RouteArgument));
       case '/PaymentMethod':

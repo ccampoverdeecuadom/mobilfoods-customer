@@ -59,7 +59,7 @@ class _CategoryMarketsGrid extends StateMVC<CategoryMarketsGrid>  {
                         height: heightBox,
                         width: double.infinity,
                         fit: BoxFit.cover,
-                        imageUrl: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/shopping-bag-full-of-fresh-vegetables-and-fruits-royalty-free-image-1128687123-1564523576.jpg",// widget.fields.elementAt(i).image.url,
+                        imageUrl: widget.fields.elementAt(i).image.url,// widget.fields.elementAt(i).image.url,
                         placeholder: (context, url) => Image.asset(
                           'assets/img/loading.gif',
                           fit: BoxFit.cover,

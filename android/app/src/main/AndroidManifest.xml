@@ -12,8 +12,8 @@
          FlutterApplication and put your custom class here. -->
     <application
         android:name=".Application"
-        android:label="mobilfoods Cliente"
-        android:icon="@mipmap/ic_launcher"
+        android:label="Mobilfoods Cliente"
+        android:icon="@mipmap/imagen"
         android:requestLegacyExternalStorage="true">
 
        <!-- <meta-data android:name="com.google.android.geo.API_KEY"

@@ -14,6 +14,7 @@ final RouteArgument routeArgument;
   _ChatWidgetState createState() => _ChatWidgetState();
 }
 
+
 class _ChatWidgetState extends StateMVC<ChatWidget>{
 
   _ChatWidgetState() : super() {
@@ -76,23 +77,6 @@ class _ChatWidgetState extends StateMVC<ChatWidget>{
               color: Colors.white,
               child: Row(
                 children: <Widget>[
-                  GestureDetector(
-                    onTap: (){
-                    },
-                    child: Container(
-                      height: 30,
-                      width: 30,
-                      decoration: BoxDecoration(
-                        color: Theme.of(context).accentColor.withOpacity(0.9),
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Icon(
-                        Icons.add ,
-                        color: Theme.of(context).primaryColor,
-                        size: 20,
-                      ),
-                    ),
-                  ),
                   SizedBox(width: 15,),
                   Expanded(
                     child: TextField(

@@ -46,28 +46,32 @@ class _ChatWidgetState extends StateMVC<ChatWidget>{
       ),
       body: Stack(
         children: <Widget>[
-          ListView.builder(
-            itemCount: messages.length,
-            shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10,bottom: 10),
-            physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index){
-              return Container(
-                padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                child: Align(
-                  alignment: (messages[index].messageType == "receiver"?Alignment.topLeft:Alignment.topRight),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: (messages[index].messageType  == "receiver"?Colors.grey.shade200:Colors.amber),
+          CustomScrollView(slivers: [
+            SliverList(
+              //shrinkWrap: true,
+              //padding: EdgeInsets.only(top: 10,bottom: 10),
+              //physics: NeverScrollableScrollPhysics(),
+              delegate: SliverChildBuilderDelegate(( BuildContext context, int index) {
+                return Container(
+                  padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
+                  child: Align(
+                    alignment: (messages[index].messageType == "receiver"?Alignment.topLeft:Alignment.topRight),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: (messages[index].messageType  == "receiver"?Colors.grey.shade200:Colors.amber),
+                      ),
+                      padding: EdgeInsets.all(16),
+                      child: Text(messages[index].messageContent, style: TextStyle(fontSize: 15),),
                     ),
-                    padding: EdgeInsets.all(16),
-                    child: Text(messages[index].messageContent, style: TextStyle(fontSize: 15),),
                   ),
-                ),
-              );
-            },
-          ),
+                );
+              }, childCount: messages.length,
+            ),
+            )
+          ],
+    ),
+
           Align(
             alignment: Alignment.bottomLeft,
             child: Container(

@@ -3,17 +3,22 @@ import 'package:customer/src/models/address.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
 import 'package:mvc_pattern/mvc_pattern.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../generated/l10n.dart';
 import '../helpers/helper.dart';
 import '../models/order.dart';
 import '../models/order_status.dart';
 import '../repository/order_repository.dart';
+import '../repository/user_repository.dart';
 
 class TrackingController extends ControllerMVC {
   Order order;
   List<OrderStatus> orderStatus = <OrderStatus>[];
   GlobalKey<ScaffoldState> scaffoldKey;
+  SharedPreferences prefs;
+
+
 
   TrackingController() {
     this.scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -38,6 +43,28 @@ class TrackingController extends ControllerMVC {
         ));
       }
     });
+  }
+
+  void createUser() async {
+    //final QuerySnapshot result =
+    //await FirebaseFirestore.instance.collection('users').where('id', isEqualTo: firebaseUser.uid).get();
+
+    // creamos el usuario en la base
+    //userRepo.getCurrentUser();
+    FirebaseFirestore fireStore;
+    fireStore = FirebaseFirestore.instance;
+    //fireStore.collection('locations').doc(currentUser.value.id).set({
+
+    fireStore.collection('users').doc(currentUser.value.id).set({
+      'name': currentUser.value.name,
+      'id': currentUser.value.id,
+      'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
+      'chattingWith': null
+    }).catchError((onError) {
+      print("ERROR ....");
+      print(onError);
+    });
+
   }
 
   void listenForOrderStatus() async {

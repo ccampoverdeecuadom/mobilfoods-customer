@@ -37,6 +37,7 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
     _tabController =
         TabController(length: 2, initialIndex: _tabIndex, vsync: this);
     _tabController.addListener(_handleTabSelection);
+    _con.createUser();
     super.initState();
   }
 

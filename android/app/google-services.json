@@ -36,6 +36,35 @@
     },
     {
       "client_info": {
+        "mobilesdk_app_id": "1:65609162491:android:5501adfc7599d656cb1a5e",
+        "android_client_info": {
+          "package_name": "com.mobilfoods.market"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "65609162491-1ad9kl1km82qace5gshdul6q4gbl07r9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCN-LNF7Ot74aGoXuynGGztJ_32_4XFFoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "65609162491-1ad9kl1km82qace5gshdul6q4gbl07r9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:65609162491:android:7a9de3d3a637c40dcb1a5e",
         "android_client_info": {
           "package_name": "com.mobilfoods.roundsman"

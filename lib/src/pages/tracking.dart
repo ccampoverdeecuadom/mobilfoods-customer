@@ -34,10 +34,10 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
   @override
   void initState() {
     _con.listenForOrder(orderId: widget.routeArgument.id);
+    _con.createUser();
     _tabController =
         TabController(length: 2, initialIndex: _tabIndex, vsync: this);
     _tabController.addListener(_handleTabSelection);
-    _con.createUser();
     super.initState();
   }
 
@@ -447,8 +447,8 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
                             ),
 
                             ],),
-
-                            _con.order.driver == null || _con.order.driver.name == "" ? Text("Aun no se asigna un repartidor"):
+                            _con.order.orderStatusId == 5 ? Column(children: [SizedBox(height: 20), Text("La orden finalizo")],):
+                            _con.order.driver == null || _con.order.driver.name == "" ? Column(children: [SizedBox(height: 20), Text("Aun no se asigna un repartidor")],):
                             Column(children: [
                               SizedBox(height: 20),
                               Text("Repartidor Asignado"),

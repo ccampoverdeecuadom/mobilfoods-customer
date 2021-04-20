@@ -11,13 +11,14 @@ import '../models/order.dart';
 import '../models/order_status.dart';
 import '../repository/order_repository.dart';
 import '../repository/user_repository.dart';
+import '../repository/user_repository.dart' as userRepo;
 
 class TrackingController extends ControllerMVC {
   Order order;
   List<OrderStatus> orderStatus = <OrderStatus>[];
   GlobalKey<ScaffoldState> scaffoldKey;
   SharedPreferences prefs;
-
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
 
   TrackingController() {
@@ -51,13 +52,12 @@ class TrackingController extends ControllerMVC {
 
     // creamos el usuario en la base
     //userRepo.getCurrentUser();
-    FirebaseFirestore fireStore;
-    fireStore = FirebaseFirestore.instance;
+    //FirebaseFirestore fireStore = FirebaseFirestore.instance;
     //fireStore.collection('locations').doc(currentUser.value.id).set({
 
-    fireStore.collection('users').doc(currentUser.value.id).set({
-      'name': currentUser.value.name,
-      'id': currentUser.value.id,
+    fireStore.collection('users').doc(userRepo.currentUser.value.id).set({
+      'name': userRepo.currentUser.value.name,
+      'id': userRepo.currentUser.value.id,
       'createdAt': DateTime.now().millisecondsSinceEpoch.toString(),
       'chattingWith': null
     }).catchError((onError) {

@@ -76,14 +76,14 @@ class ChatScreenState extends State<ChatScreen> {
 
   @override
   void initState() {
-    super.initState();
+
     //focusNode.addListener(onFocusChange);
     listScrollController.addListener(_scrollListener);
     groupChatId = '';
     isLoading = false;
 
     readLocal();
-
+    super.initState();
   }
 
   // void onFocusChange() {
@@ -96,10 +96,11 @@ class ChatScreenState extends State<ChatScreen> {
   // }
 
   readLocal() async {
-    prefs = await SharedPreferences.getInstance();
-    print("actual id "+ prefs.getString('id'));
-    id = prefs.getString('id') ?? '';
-    print("actual id "+ prefs.getString('id'));
+    print("INICIANDO....");
+    //prefs = await SharedPreferences.getInstance();
+    // print("actual id "+ prefs.getString('id'));
+    // id = prefs.getString('id') ?? '';
+    print("actual id "+ userRepo.currentUser.value.id);
     if (id.hashCode <= peerId.hashCode) {
       groupChatId = '$id-$peerId';
     } else {
@@ -115,6 +116,8 @@ class ChatScreenState extends State<ChatScreen> {
     // type: 0 = text, 1 = image, 2 = sticker
     if (content.trim() != '') {
       textEditingController.clear();
+
+      print("gorup chat " + groupChatId);
 
       var documentReference = fireStore
           .collection('messages')

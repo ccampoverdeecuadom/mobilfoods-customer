@@ -46,6 +46,7 @@ class TrackingController extends ControllerMVC {
     });
   }
 
+  // method to create user on firestore when there is a active order
   void createUser() async {
     //final QuerySnapshot result =
     //await FirebaseFirestore.instance.collection('users').where('id', isEqualTo: firebaseUser.uid).get();
@@ -64,6 +65,10 @@ class TrackingController extends ControllerMVC {
       print("ERROR ....");
       print(onError);
     });
+
+    await prefs.setString('id', userRepo.currentUser.value.id);
+    await prefs.setString('nickname', userRepo.currentUser.value.name);
+
 
   }
 

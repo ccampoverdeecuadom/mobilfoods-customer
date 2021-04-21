@@ -7,8 +7,9 @@ import 'package:mvc_pattern/mvc_pattern.dart';
 class ChatWidget extends StatefulWidget {
 
 final RouteArgument routeArgument;
+final String peerId;
 
-  ChatWidget({Key key, this.routeArgument}) : super(key: key);
+  ChatWidget({Key key, @required this.peerId, this.routeArgument}) : super(key: key);
 
   @override
   _ChatWidgetState createState() => _ChatWidgetState();

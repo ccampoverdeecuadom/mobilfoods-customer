@@ -1,3 +1,5 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:customer/src/pages/testchat.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart' show DateFormat;
@@ -11,9 +13,12 @@ import '../elements/ProductOrderItemWidget.dart';
 import '../elements/ShoppingCartButtonWidget.dart';
 import '../helpers/helper.dart';
 import '../models/route_argument.dart';
+import '../repository/user_repository.dart' as userRepo;
+import 'chat.dart';
 
 class TrackingWidget extends StatefulWidget {
   final RouteArgument routeArgument;
+  final FirebaseFirestore fireStore = FirebaseFirestore.instance;
 
   TrackingWidget({Key key, this.routeArgument}) : super(key: key);
 
@@ -26,6 +31,7 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
   TrackingController _con;
   TabController _tabController;
   int _tabIndex = 0;
+  String driverId;
 
   _TrackingWidgetState() : super(TrackingController()) {
     _con = controller;
@@ -51,6 +57,18 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
       setState(() {
         _tabIndex = _tabController.index;
       });
+    }
+  }
+
+  Future getDocs() async {
+    print("22222");
+    QuerySnapshot querySnapshot = await widget.fireStore.collection("users").getDocuments();
+    for (int i = 0; i < querySnapshot.documents.length; i++) {
+      if(querySnapshot.documents[i].data()["id"] != userRepo.currentUser.value.id){
+        driverId = querySnapshot.documents[i].data()["id"];
+        print("Driver Id" + driverId);
+      }
+
     }
   }
 
@@ -616,7 +634,13 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
                                       child: FlatButton(
                                         padding: EdgeInsets.all(0),
                                         onPressed: () {
-                                          Navigator.of(context).pushNamed('/Chating', arguments: RouteArgument());
+                                          driverId = _con.order.driver.id;
+                                          print("Driver id" + driverId);
+                                          //getDocs();
+                                          //var document = widget.fireStore.collection('users').doc(userRepo.currentUser.value.id);
+                                          //var id = document.id;
+                                          //Navigator.of(context).pushNamed('/Chating',  arguments: RouteArgument() );
+                                          Navigator.push(context, MaterialPageRoute(builder: (context) => Chat(peerId: driverId)));
                                         },
                                         child: Icon(
                                           Icons.chat,

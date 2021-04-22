@@ -86,14 +86,6 @@ class ChatScreenState extends State<ChatScreen> {
     super.initState();
   }
 
-  // void onFocusChange() {
-  //   if (focusNode.hasFocus) {
-  //     // Hide sticker when keyboard appear
-  //     setState(() {
-  //       isShowSticker = false;
-  //     });
-  //   }
-  // }
 
   readLocal() async {
     print("INICIANDO....");
@@ -117,7 +109,7 @@ class ChatScreenState extends State<ChatScreen> {
     if (content.trim() != '') {
       textEditingController.clear();
 
-      print("gorup chat " + groupChatId);
+      print("group chat " + groupChatId);
 
       var documentReference = fireStore
           .collection('messages')

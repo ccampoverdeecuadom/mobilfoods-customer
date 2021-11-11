@@ -72,7 +72,7 @@ class CheckoutController extends CartController {
     userRepo.setCreditCard(creditCard).then((value) {
       setState(() {});
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).payment_card_updated_successfully),
+        content: Text(S.of(this.state.context).payment_card_updated_successfully),
       ));
     });
   }

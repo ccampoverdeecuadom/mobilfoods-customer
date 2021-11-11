@@ -21,7 +21,7 @@ class SettingsController extends ControllerMVC {
     repository.update(user).then((value) {
       setState(() {});
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).profile_settings_updated_successfully),
+        content: Text(S.of(this.state.context).profile_settings_updated_successfully),
       ));
     });
   }
@@ -30,7 +30,7 @@ class SettingsController extends ControllerMVC {
     repository.setCreditCard(creditCard).then((value) {
       setState(() {});
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).payment_settings_updated_successfully),
+        content: Text(S.of(this.state.context).payment_settings_updated_successfully),
       ));
     });
   }

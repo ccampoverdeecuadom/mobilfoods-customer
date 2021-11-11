@@ -51,14 +51,14 @@ class _OrderSuccessWidgetState extends StateMVC<OrderSuccessWidget> {
             S.of(context).data_invoice,
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline1
                 .merge(TextStyle(letterSpacing: 1.3)),
           )
               :Text(
             S.of(context).confirmation,
             style: Theme.of(context)
                 .textTheme
-                .title
+                .headline1
                 .merge(TextStyle(letterSpacing: 1.3)),
           ),
         ),

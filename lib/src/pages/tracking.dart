@@ -62,10 +62,10 @@ class _TrackingWidgetState extends StateMVC<TrackingWidget>
 
   Future getDocs() async {
     print("22222");
-    QuerySnapshot querySnapshot = await widget.fireStore.collection("users").getDocuments();
-    for (int i = 0; i < querySnapshot.documents.length; i++) {
-      if(querySnapshot.documents[i].data()["id"] != userRepo.currentUser.value.id){
-        driverId = querySnapshot.documents[i].data()["id"];
+    QuerySnapshot querySnapshot = await widget.fireStore.collection("users").get();
+    for (int i = 0; i < querySnapshot.docs.length; i++) {
+      if(querySnapshot.docs[i].data()["id"] != userRepo.currentUser.value.id){
+        driverId = querySnapshot.docs[i].data()["id"];
         print("Driver Id" + driverId);
       }
 

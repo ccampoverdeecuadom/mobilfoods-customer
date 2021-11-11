@@ -25,32 +25,35 @@ dependencies:
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
-  cupertino_icons: 0.1.2
-  google_maps_flutter: 0.5.30
-  google_map_location_picker: 3.3.3
-  mvc_pattern: 6.3.0
-  global_configuration: 1.5.0
+  cupertino_icons: ^1.0.3
+  google_maps_flutter: ^1.2.0
+  google_map_location_picker: ^4.1.6
+  mvc_pattern: ^8.0.0
+  global_configuration: ^1.6.0
   http: 0.12.2
-  html: 0.14.0+3
-  shared_preferences: 0.5.10
-  flutter_html: 1.0.2
-  flutter_svg: 0.18.1
-  location: 3.0.2
+  html: ^0.14.0+4
+  shared_preferences: ^0.5.12+4
+  flutter_html: ^1.2.0
+  flutter_svg: ^0.19.3
+  location: ^3.2.4
   flutter_inappbrowser: 2.0.2
-  url_launcher: 5.5.0
-  firebase_messaging: 7.0.0
-  cached_network_image: 2.2.0+1
-  fluttertoast: 4.0.1
-  flutter_staggered_grid_view: 0.3.2
-  intl_utils: 1.6.3
-  carousel_slider: 2.2.1
-  pusher_websocket_flutter: ^0.2.0
-  flutter_local_notifications: ^3.0.3
-  cloud_firestore: ^0.14.4
-  firebase_core: 0.5.3
+  url_launcher: ^6.0.5
+  firebase_messaging: ^8.0.0-dev.15
+  cached_network_image: ^2.5.1
+  fluttertoast: ^8.0.8
+  flutter_staggered_grid_view: ^0.4.1
+  intl_utils: ^1.9.0
+  carousel_slider: ^4.0.0
+  flutter_local_notifications: ^4.0.1+2
+  cloud_firestore: ^0.16.0+1
+  firebase_core: ^0.7.0
   image_picker: ^0.6.7+22
   dio: ^3.0.10
-  flutter_countdown_timer: ^3.0.0
+  flutter_countdown_timer: ^4.1.0
+
+
+dependency_overrides:
+  intl: 0.17.0
 
 dev_dependencies:
   flutter_test:

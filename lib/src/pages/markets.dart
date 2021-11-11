@@ -42,7 +42,7 @@ class _MarketsWidgetState extends StateMVC<MarketsWidget> {
         elevation: 0,
         centerTitle: true,
         title:  Image.asset(
-        'assets/img/logo_header.png',
+        'assets/img/logo_header.jpg',
         height: 50,
         fit: BoxFit.cover,
       ),

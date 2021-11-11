@@ -34,8 +34,10 @@ Future<Setting> initSettings() async {
   final String url =
       '${GlobalConfiguration().getString('api_base_url')}settings';
   try {
+    Uri uri = Uri.parse(url);
+
     final response = await http
-        .get(url, headers: {HttpHeaders.contentTypeHeader: 'application/json'});
+        .get(uri, headers: {HttpHeaders.contentTypeHeader: 'application/json'});
     if (response.statusCode == 200 &&
         response.headers.containsValue('application/json')) {
       if (json.decode(response.body)['data'] != null) {

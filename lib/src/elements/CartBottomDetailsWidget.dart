@@ -37,8 +37,8 @@ class CartBottomDetailsWidget extends StatelessWidget {
                       blurRadius: 5.0)
                 ]),
             child: SizedBox(
-              width: MediaQuery.of(context).size.width - 40,
-              child: Column(
+              width: MediaQuery.of(context).size.width - 38,
+              child: SingleChildScrollView(child:  Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.max,
                 children: <Widget>[
@@ -180,8 +180,8 @@ class CartBottomDetailsWidget extends StatelessWidget {
                             )
                     ],
                   ),
-                  SizedBox(height: 10),
-                ],
+                  SizedBox(height: 10)
+                ],)
               ),
             ),
           );

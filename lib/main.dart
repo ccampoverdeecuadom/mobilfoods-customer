@@ -7,14 +7,11 @@ import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:global_configuration/global_configuration.dart';
 import 'src/elements/notification_plugin.dart';
-import 'package:pusher_websocket_flutter/pusher.dart';
 
 
 import 'generated/l10n.dart';
 import 'route_generator.dart';
 import 'src/helpers/app_config.dart' as config;
-import 'src/models/order.dart';
-import 'src/models/route_argument.dart';
 import 'src/models/setting.dart';
 import 'src/repository/settings_repository.dart' as settingRepo;
 import 'src/repository/user_repository.dart' as userRepo;
@@ -51,7 +48,6 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   NotificationPlugin notificationPlugin;
-  Channel channel;
 
 
   @override
@@ -60,46 +56,7 @@ class _MyAppState extends State<MyApp> {
     settingRepo.getCurrentLocation();
     userRepo.getCurrentUser();
     super.initState();
-    initPusher();
     notificationPlugin = new NotificationPlugin();
-  }
-
-
-  Future<void> initPusher() async {
-    try {
-     //  await Pusher.init("dd1f605388a449d95737", PusherOptions(cluster: "mt1"), // Dev
-      await Pusher.init("748edca4f57534084863", PusherOptions(cluster: "mt1"), //Prod
-          enableLogging: true);
-    } on PlatformException catch (e) {
-      print(e.message);
-    }
-
-    //Connected
-    Pusher.connect(onConnectionStateChange: (x) async {
-      print('***********Conected***********');
-      print(x.currentState);
-    }, onError: (x) {
-      print('***********Error***********');
-      print(x.message);
-    });
-
-    //subscribe
-    channel = await Pusher.subscribe('orders');
-
-    //bind
-    channel.bind('App\\Events\\OrderStatusUpdated', (e) async{
-
-      String x = userRepo.currentUser.value.id;
-      Order _order = Order.fromJSON(jsonDecode(e.data)['order']);
-      int y = jsonDecode(e.data)['order']['user_id'];
-      if(x == y.toString()){
-        notificationPlugin.setOnNotificationClick((payload)=>{
-        Navigator.of(context).pushNamed('/Tracking', arguments: RouteArgument(id: _order.id))
-        });
-        await notificationPlugin.showNotificationWithAttachment(_order);
-      }
-    });
-
   }
 
 

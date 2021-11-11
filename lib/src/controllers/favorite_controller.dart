@@ -22,7 +22,7 @@ class FavoriteController extends ControllerMVC {
       });
     }, onError: (a) {
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     }, onDone: () {
       if (message != null) {
@@ -35,6 +35,6 @@ class FavoriteController extends ControllerMVC {
 
   Future<void> refreshFavorites() async {
     favorites.clear();
-    listenForFavorites(message: S.of(context).favorites_refreshed_successfuly);
+    listenForFavorites(message: S.of(this.state.context).favorites_refreshed_successfuly);
   }
 }

@@ -30,7 +30,7 @@ class ProductController extends ControllerMVC {
     }, onError: (a) {
       //print(a);
       scaffoldKey.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     }, onDone: () {
       calculateTotal();
@@ -84,7 +84,7 @@ class ProductController extends ControllerMVC {
       }).whenComplete(() {
         setCurrentMarketId(product.market.id);
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
-          content: Text(S.of(context).this_product_was_added_to_cart),
+          content: Text(S.of(this.state.context).this_product_was_added_to_cart),
         ));
       });
     } else {
@@ -96,7 +96,7 @@ class ProductController extends ControllerMVC {
       }).whenComplete(() {
         setCurrentMarketId(product.market.id);
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
-          content: Text(S.of(context).this_product_was_added_to_cart),
+          content: Text(S.of(this.state.context).this_product_was_added_to_cart),
         ));
       });
     }
@@ -117,7 +117,7 @@ class ProductController extends ControllerMVC {
         this.favorite = value;
       });
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).thisProductWasAddedToFavorite),
+        content: Text(S.of(this.state.context).thisProductWasAddedToFavorite),
       ));
     });
   }
@@ -128,7 +128,7 @@ class ProductController extends ControllerMVC {
         this.favorite = new Favorite();
       });
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).thisProductWasRemovedFromFavorites),
+        content: Text(S.of(this.state.context).thisProductWasRemovedFromFavorites),
       ));
     });
   }
@@ -137,7 +137,7 @@ class ProductController extends ControllerMVC {
     var _id = product.id;
     product = new Product();
     listenForFavorite(productId: _id);
-    listenForProduct(productId: _id, message: S.of(context).productRefreshedSuccessfuly);
+    listenForProduct(productId: _id, message: S.of(this.state.context).productRefreshedSuccessfuly);
   }
 
   void calculateTotal() {

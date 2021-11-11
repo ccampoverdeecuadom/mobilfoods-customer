@@ -42,18 +42,28 @@ class SplashScreenController extends ControllerMVC {
     });
     Timer(Duration(seconds: 20), () {
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     });
   }
 
   void configureFirebase(FirebaseMessaging _firebaseMessaging) {
     try {
-      _firebaseMessaging.configure(
-        onMessage: notificationOnMessage,
-        onLaunch: notificationOnLaunch,
-        onResume: notificationOnResume,
-      );
+      FirebaseMessaging.onMessage.listen((RemoteMessage remoteMessage) {
+        Fluttertoast.showToast(
+          msg: remoteMessage.notification.title,
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.TOP,
+          timeInSecForIosWeb: 5,
+        );
+      });
+
+      FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage remoteMessage) {
+        if (remoteMessage.data['id'] == "orders") {
+          settingRepo.navigatorKey.currentState.pushReplacementNamed('/Pages', arguments: 3);
+        }
+      });
+
     } catch (e) {
       //print(CustomTrace(StackTrace.current, message: e));
       //print(CustomTrace(StackTrace.current, message: 'Error Config Firebase'));

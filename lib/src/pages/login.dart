@@ -33,7 +33,7 @@ class _LoginWidgetState extends StateMVC<LoginWidget> {
       onWillPop: Helper.of(context).onWillPop,
       child: Scaffold(
         key: _con.scaffoldKey,
-        resizeToAvoidBottomPadding: false,
+        resizeToAvoidBottomInset: false,
         body: Stack(
           alignment: AlignmentDirectional.topCenter,
           children: <Widget>[

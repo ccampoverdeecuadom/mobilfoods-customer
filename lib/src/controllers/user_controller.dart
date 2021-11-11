@@ -17,7 +17,7 @@ class UserController extends ControllerMVC {
   OverlayEntry loader;
 
   UserController() {
-    loader = Helper.overlayLoader(context);
+    loader = Helper.overlayLoader(this);
     loginFormKey = new GlobalKey<FormState>();
     this.scaffoldKey = new GlobalKey<ScaffoldState>();
     _firebaseMessaging = FirebaseMessaging();
@@ -30,22 +30,22 @@ class UserController extends ControllerMVC {
   }
 
   void login() async {
-    FocusScope.of(context).unfocus();
+    FocusScope.of(this.state.context).unfocus();
     if (loginFormKey.currentState.validate()) {
       loginFormKey.currentState.save();
-      Overlay.of(context).insert(loader);
+      Overlay.of(this.state.context).insert(loader);
       repository.login(user).then((value) {
         if (value != null && value.apiToken != null) {
           Navigator.of(scaffoldKey.currentContext).pushReplacementNamed('/Pages', arguments: 2);
         } else {
           scaffoldKey?.currentState?.showSnackBar(SnackBar(
-            content: Text(S.of(context).wrong_email_or_password),
+            content: Text(S.of(this.state.context).wrong_email_or_password),
           ));
         }
       }).catchError((e) {
         loader.remove();
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
-          content: Text(S.of(context).this_account_not_exist),
+          content: Text(S.of(this.state.context).this_account_not_exist),
         ));
       }).whenComplete(() {
         Helper.hideLoader(loader);
@@ -54,22 +54,22 @@ class UserController extends ControllerMVC {
   }
 
   void register() async {
-    FocusScope.of(context).unfocus();
+    FocusScope.of(this.state.context).unfocus();
     if (loginFormKey.currentState.validate()) {
       loginFormKey.currentState.save();
-      Overlay.of(context).insert(loader);
+      Overlay.of(this.state.context).insert(loader);
       repository.register(user).then((value) {
         if (value != null && value.apiToken != null) {
           Navigator.of(scaffoldKey.currentContext).pushReplacementNamed('/Pages', arguments: 2);
         } else {
           scaffoldKey?.currentState?.showSnackBar(SnackBar(
-            content: Text(S.of(context).wrong_email_or_password),
+            content: Text(S.of(this.state.context).wrong_email_or_password),
           ));
         }
       }).catchError((e) {
         loader.remove();
         scaffoldKey?.currentState?.showSnackBar(SnackBar(
-          content: Text(S.of(context).this_email_account_exists),
+          content: Text(S.of(this.state.context).this_email_account_exists),
         ));
       }).whenComplete(() {
         Helper.hideLoader(loader);
@@ -78,16 +78,16 @@ class UserController extends ControllerMVC {
   }
 
   void resetPassword() {
-    FocusScope.of(context).unfocus();
+    FocusScope.of(this.state.context).unfocus();
     if (loginFormKey.currentState.validate()) {
       loginFormKey.currentState.save();
-      Overlay.of(context).insert(loader);
+      Overlay.of(this.state.context).insert(loader);
       repository.resetPassword(user).then((value) {
         if (value != null && value == true) {
           scaffoldKey?.currentState?.showSnackBar(SnackBar(
-            content: Text(S.of(context).your_reset_link_has_been_sent_to_your_email),
+            content: Text(S.of(this.state.context).your_reset_link_has_been_sent_to_your_email),
             action: SnackBarAction(
-              label: S.of(context).login,
+              label: S.of(this.state.context).login,
               onPressed: () {
                 Navigator.of(scaffoldKey.currentContext).pushReplacementNamed('/Login');
               },
@@ -97,7 +97,7 @@ class UserController extends ControllerMVC {
         } else {
           loader.remove();
           scaffoldKey?.currentState?.showSnackBar(SnackBar(
-            content: Text(S.of(context).error_verify_email_settings),
+            content: Text(S.of(this.state.context).error_verify_email_settings),
           ));
         }
       }).whenComplete(() {

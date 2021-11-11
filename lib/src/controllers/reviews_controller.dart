@@ -33,7 +33,7 @@ class ReviewsController extends ControllerMVC {
     }, onError: (a) {
       //print(a);
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     }, onDone: () {
       getProductsOfOrder();
@@ -48,7 +48,7 @@ class ReviewsController extends ControllerMVC {
   void addProductReview(Review _review, Product _product) async {
     productRepo.addProductReview(_review, _product).then((value) {
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).the_product_has_been_rated_successfully),
+        content: Text(S.of(this.state.context).the_product_has_been_rated_successfully),
       ));
     });
   }
@@ -57,13 +57,13 @@ class ReviewsController extends ControllerMVC {
     marketRepo.addMarketReview(_review, this.order.productOrders[0].product.market).then((value) {
       refreshOrder();
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).the_market_has_been_rated_successfully),
+        content: Text(S.of(this.state.context).the_market_has_been_rated_successfully),
       ));
     });
   }
 
   Future<void> refreshOrder() async {
-    listenForOrder(orderId: order.id, message: S.of(context).reviews_refreshed_successfully);
+    listenForOrder(orderId: order.id, message: S.of(this.state.context).reviews_refreshed_successfully);
   }
 
   void getProductsOfOrder() {

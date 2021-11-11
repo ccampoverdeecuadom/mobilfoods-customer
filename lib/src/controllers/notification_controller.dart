@@ -23,7 +23,7 @@ class NotificationController extends ControllerMVC {
     }, onError: (a) {
       //print(a);
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     }, onDone: () {
       if (message != null) {
@@ -36,6 +36,6 @@ class NotificationController extends ControllerMVC {
 
   Future<void> refreshNotifications() async {
     notifications.clear();
-    listenForNotifications(message: S.of(context).notifications_refreshed_successfuly);
+    listenForNotifications(message: S.of(this.state.context).notifications_refreshed_successfuly);
   }
 }

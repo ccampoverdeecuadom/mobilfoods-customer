@@ -23,7 +23,7 @@ class OrderController extends ControllerMVC {
     }, onError: (a) {
       //print(a);
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).verify_your_internet_connection),
+        content: Text(S.of(this.state.context).verify_your_internet_connection),
       ));
     }, onDone: () {
       if (message != null) {
@@ -46,13 +46,13 @@ class OrderController extends ControllerMVC {
     }).whenComplete(() {
       //refreshOrders();
       scaffoldKey?.currentState?.showSnackBar(SnackBar(
-        content: Text(S.of(context).orderThisorderidHasBeenCanceled(order.id)),
+        content: Text(S.of(this.state.context).orderThisorderidHasBeenCanceled(order.id)),
       ));
     });
   }
 
   Future<void> refreshOrders() async {
     orders.clear();
-    listenForOrders(message: S.of(context).order_refreshed_successfuly);
+    listenForOrders(message: S.of(this.state.context).order_refreshed_successfuly);
   }
 }
